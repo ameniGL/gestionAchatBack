@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: chat
+  main:
+    web-application-type: none
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres  # Ensure the port and database name are correct
+    username: postgres
+    password: 1738
+    driver-class-name: org.postgresql.Driver
+    server:
+      port: 8040
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect

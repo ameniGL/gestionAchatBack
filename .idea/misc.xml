@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/recherche/pom.xml" />
         <option value="$PROJECT_DIR$/security/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-3-jwt-security/pom.xml" />
+        <option value="$PROJECT_DIR$/chat/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-chat-socket-master/pom.xml" />
       </list>
     </option>
   </component>

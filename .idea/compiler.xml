@@ -9,8 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="security" />
-        <module name="gateway" />
+        <module name="ms-chat-socket" />
         <module name="discovery" />
+        <module name="chat" />
+        <module name="gateway" />
         <module name="recherche" />
       </profile>
     </annotationProcessing>
@@ -21,9 +23,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="chat" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="ms-chat-socket" options="-parameters" />
       <module name="recherche" options="-parameters" />
       <module name="security" options="-parameters --enable-preview" />
       <module name="security (1)" options="-parameters" />

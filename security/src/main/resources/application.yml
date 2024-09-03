@@ -5,6 +5,18 @@ spring:
     password: 1738
     driver-class-name: org.postgresql.Driver
 
+  application:
+    name: security
+  config:
+    import: optional:configserver:http://localhost:8888
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka/
+        logging:
+          level:
+            root: DEBUG
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,9 +28,6 @@ spring:
 
 server:
   port: 8030
-excel:
-  file:
-    path: C:\Users\Amani\Desktop\stage 4eme\amazon_ebay_products.xlsx
 
 application:
   security:

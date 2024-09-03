@@ -34,7 +34,7 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.ADMIN)
+                .role(Role.USER)
                 .mfaEnabled(request.isMfaEnabled())
                 .build();
 
@@ -60,8 +60,10 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
+
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
+
         if (user.isMfaEnabled()) {
             return AuthenticationResponse.builder()
                     .accessToken("")
@@ -69,12 +71,19 @@ public class AuthenticationService {
                     .mfaEnabled(true)
                     .build();
         }
+
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
+
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .id(Long.valueOf(user.getId()))
                 .mfaEnabled(false)
+                .email(user.getEmail())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .role(String.valueOf(user.getRole()))
                 .build();
     }
 

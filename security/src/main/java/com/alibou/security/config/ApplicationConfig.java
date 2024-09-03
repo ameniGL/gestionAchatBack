@@ -12,9 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,7 +36,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.PATCH;
 public class ApplicationConfig {
 
   private final UserRepository repository;
-
+  @Bean
+  public RestTemplate restTemplate() {
+    return new RestTemplate();
+  }
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> repository.findByEmail(username)
@@ -83,4 +88,8 @@ public class ApplicationConfig {
     return new BCryptPasswordEncoder();
   }
 
+  @Bean
+  public WebClient.Builder webClientBuilder() {
+    return WebClient.builder();
+  }
 }
